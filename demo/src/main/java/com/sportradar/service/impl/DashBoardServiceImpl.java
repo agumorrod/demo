@@ -1,5 +1,6 @@
 package com.sportradar.service.impl;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class DashBoardServiceImpl implements IDashBoardService {
 	
 	@Autowired
 	IMatchRepository matchRepository;
-
+	
 	@Override
 	public Long minute() {
 		// TODO Auto-generated method stub
@@ -24,27 +25,34 @@ public class DashBoardServiceImpl implements IDashBoardService {
 
 	@Override
 	public DashBoard resumeMatches() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public DashBoard resumeMatches(List<Match> listMatches) {
 		// Local variables
 		DashBoard result = new DashBoard();
 		
 		List<Match> matchesFinished = matchRepository.getAllMatchesFinished();
 		List<Match> matchesUnfinished = matchRepository.getAllMatchesOnCurse();
 		
-		if(matchesUnfinished!=null && !matchesUnfinished.isEmpty() && (matchesFinished==null || matchesFinished.isEmpty())) {
-			// Tratar lista de inacabados
-		}else if((matchesUnfinished==null || matchesUnfinished.isEmpty()) && matchesFinished!=null && !matchesFinished.isEmpty()) {
-			// Tratar lista de acabados
+		if(matchesUnfinished!=null && matchesFinished!=null) {
+			result.setMatchesFinished(matchesFinished);
+			result.setMatchesUnfinished(matchesUnfinished);
+		}else if(matchesFinished!=null) {
+			result.setMatchesFinished(matchesFinished);
+			result.setMatchesUnfinished(new LinkedList<Match>());
 		}else {
-			// Tratar las 2 listas
+			result.setMatchesUnfinished(matchesUnfinished);
+			result.setMatchesFinished(new LinkedList<Match>());
 		}
 		 	
 		return result;
+	}
+
+	@Override
+	public boolean dashBoardHasContent(DashBoard dashBoard) {
+		if(dashBoard!=null && (dashBoard.getMatchesFinished()!=null || dashBoard.getMatchesUnfinished()!=null)) {
+			if(!dashBoard.getMatchesFinished().isEmpty() || dashBoard.getMatchesUnfinished()!=null) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

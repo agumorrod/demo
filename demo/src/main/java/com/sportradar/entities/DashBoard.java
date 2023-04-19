@@ -5,11 +5,14 @@ import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
+import lombok.Data;
+
 /**
  * Class that mapping an dashboard object.
  * @author agumorrod
  *
  */
+@Data
 public class DashBoard implements Serializable {
 
 	/**

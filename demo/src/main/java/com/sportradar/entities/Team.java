@@ -2,6 +2,9 @@ package com.sportradar.entities;
 
 import java.io.Serializable;
 
+import lombok.Data;
+
+@Data
 public class Team implements Serializable {
 
 	/**
@@ -21,8 +24,14 @@ public class Team implements Serializable {
 	 */
 	private Boolean home;
 	
-	public Team(String name) {
+	public Team(){
+		
+	}
+	
+	public Team(Long id, String name, Boolean home) {
+		this.id = id;
 		this.name = name;
+		this.home = home;
 	}
 
 }

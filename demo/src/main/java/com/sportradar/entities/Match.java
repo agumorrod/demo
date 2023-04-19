@@ -2,8 +2,12 @@ package com.sportradar.entities;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.LinkedList;
 import java.util.List;
 
+import lombok.Data;
+
+@Data
 public class Match implements Serializable {
 
 	/**
@@ -17,4 +21,24 @@ public class Match implements Serializable {
 	private Boolean finished;
 	private Long minute;
 	private Calendar startMatch;
+	
+	public Match(){
+		this.id = null;
+		this.homeTeam = new Team();
+		this.awayTeam = new Team();
+		this.goalsMatch = new LinkedList<Goal>();
+		this.finished = null;
+		this.minute = null;
+		this.startMatch = null;
+	}
+	
+	public Match(Long id, Team homeTeam, Team awayTeam, List<Goal> goalsMatch, Boolean finished, Long minute, Calendar startMatch){
+		this.id = id;
+		this.homeTeam = homeTeam;
+		this.awayTeam = awayTeam;
+		this.goalsMatch = goalsMatch;
+		this.finished = finished;
+		this.minute = minute;
+		this.startMatch = startMatch;
+	}
 }
