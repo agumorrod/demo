@@ -1,17 +1,22 @@
-package com.sportradar.entities;
+package com.sportradar.dto;
 
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
-import lombok.Data;
+import lombok.*;
 
 /**
  * Class that mapping an dashboard object.
  * @author agumorrod
  *
  */
+@Getter
+@Setter
+@With
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class DashBoard implements Serializable {
 
@@ -25,23 +30,23 @@ public class DashBoard implements Serializable {
 	 */
 	private List<Match> matchesFinished;
 	/**
-	 * Attribute that contains the list of matches unfinished of the day.
+	 * Attribute that contains the list of matches on course of the day.
 	 */
-	private List<Match> matchesUnfinished;
+	private List<Match> matchesOnCourse;
 	/**
 	 * Attribute that contains the current date.
 	 */
 	private Calendar date;
 	
-	public DashBoard() {
-		matchesFinished = new LinkedList<Match>();
-		matchesUnfinished = new LinkedList<Match>();
-		date = Calendar.getInstance();
-	}
+//	public DashBoard() {
+//		matchesFinished = new LinkedList<Match>();
+//		matchesUnfinished = new LinkedList<Match>();
+//		date = Calendar.getInstance();
+//	}
 	
-	public DashBoard(LinkedList<Match> matchesFinished, LinkedList<Match> matchesUnfinished) {
+	public DashBoard(LinkedList<Match> matchesFinished, LinkedList<Match> matchesOnCourse) {
 		this.matchesFinished = matchesFinished;
-		this.matchesUnfinished = matchesUnfinished;
+		this.matchesOnCourse = matchesOnCourse;
 		date = Calendar.getInstance();
 	}
 }

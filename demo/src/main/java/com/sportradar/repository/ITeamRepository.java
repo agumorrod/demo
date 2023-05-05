@@ -2,7 +2,7 @@ package com.sportradar.repository;
 
 import java.util.List;
 
-import com.sportradar.entities.Team;
+import com.sportradar.dto.Team;
 
 public interface ITeamRepository {
 

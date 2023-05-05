@@ -1,9 +1,19 @@
-package com.sportradar.entities;
+package com.sportradar.dto;
 
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.With;
 
+@Getter
+@Setter
+@With
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Team implements Serializable {
 
@@ -24,14 +34,14 @@ public class Team implements Serializable {
 	 */
 	private Boolean home;
 	
-	public Team(){
-		
-	}
-	
-	public Team(Long id, String name, Boolean home) {
-		this.id = id;
-		this.name = name;
-		this.home = home;
-	}
+//	public Team(){
+//		
+//	}
+//	
+//	public Team(Long id, String name, Boolean home) {
+//		this.id = id;
+//		this.name = name;
+//		this.home = home;
+//	}
 
 }
